@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mehr Sabir Pre Primary School — Play, Learn, Grow</title>
+  <meta name="description" content="Mehr Sabir Pre Primary School offers Play Group, Nursery, Jr. KG and Sr. KG with smart classrooms, CCTV security and ECCED-certified educators. Admissions open for 2026-27.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+  /* ═══════════════════════════════════════
+     DESIGN TOKENS
+     To customise: edit the :root values below
+  ═══════════════════════════════════════ */
+  :root {
+    --forest:      #1C3D2E;
+    --forest-dark: #112A1F;
+    --gold:        #C89520;
+    --gold-light:  #E8B830;
+    --sage:        #4E7A62;
+    --parchment:   #F5F3EE;
+    --ink:         #141F18;
+    --white:       #FFFFFF;
+
+    --font-display: 'Lora', Georgia, serif;
+    --font-body:    'Source Sans 3', system-ui, 'Segoe UI', sans-serif;
+
+    --section-py: 88px;
+    --max-w:      1140px;
+    --r:          4px;
+    --r-lg:       12px;
+    --shadow:     0 2px 12px rgba(20,31,24,.08);
+    --shadow-lg:  0 8px 40px rgba(20,31,24,.14);
+  }
+
+  /* ── Reset ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html  { scroll-behavior: smooth; }
+  body  { font-family: var(--font-body); color: var(--ink); background: var(--white);
+          line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  img   { max-width: 100%; display: block; }
+  a     { color: inherit; text-decoration: none; }
+  button { cursor: pointer; font-family: inherit; }
+
+  .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+  /* ══════════════════════════════════════
+     NAVIGATION
+  ══════════════════════════════════════ */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(17,42,31,.97);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(200,149,32,.2);
+    transition: border-color .3s;
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between; height: 68px;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 10px; }
+  .nav-mark  {
+    width: 40px; height: 40px; border-radius: 8px; background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700;
+    color: var(--forest-dark); font-size: 18px; flex-shrink: 0;
+  }
+  .nav-name { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--white); }
+
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,.82); font-size: 14px; font-weight: 500;
+    letter-spacing: .3px; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a.nav-cta {
+    background: var(--gold); color: var(--forest-dark);
+    padding: 8px 18px; border-radius: var(--r); font-weight: 700; transition: background .2s;
+  }
+  .nav-links a.nav-cta:hover { background: var(--gold-light); color: var(--forest-dark); }
+
+  .nav-toggle {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; padding: 4px;
+  }
+  .nav-toggle span {
+    display: block; width: 24px; height: 2px;
+    background: var(--white); border-radius: 2px; transition: all .3s;
+  }
+
+  /* ══════════════════════════════════════
+     HERO
+  ══════════════════════════════════════ */
+  .hero {
+    min-height: 100vh; background: var(--forest-dark);
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden; padding-top: 68px;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -120px; right: -120px;
+    width: 560px; height: 560px; border-radius: 50%;
+    border: 80px solid rgba(200,149,32,.07); pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -80px; left: -80px;
+    width: 380px; height: 380px; border-radius: 50%;
+    background: rgba(78,122,98,.12); pointer-events: none;
+  }
+  .hero-inner { position: relative; z-index: 1; padding: 80px 0 48px; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(200,149,32,.13); border: 1px solid rgba(200,149,32,.28);
+    color: var(--gold-light); font-size: 12px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 100px; margin-bottom: 28px;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(42px, 7vw, 82px); line-height: 1.08;
+    color: var(--white); font-weight: 700; text-wrap: balance;
+    margin-bottom: 14px; max-width: 780px;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 19px); color: rgba(255,255,255,.6);
+    max-width: 510px; margin-bottom: 44px; line-height: 1.7;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 14px 28px; border-radius: var(--r);
+    font-size: 15px; font-weight: 700; transition: all .2s;
+    border: 2px solid transparent; white-space: nowrap; line-height: 1;
+  }
+  .btn-wa     { background: #25D366; color: var(--white); }
+  .btn-wa:hover { background: #1eb957; }
+  .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,.28); }
+  .btn-outline:hover { border-color: rgba(255,255,255,.65); background: rgba(255,255,255,.06); }
+
+  .hero-stats { position: relative; z-index: 1; border-top: 1px solid rgba(255,255,255,.08); padding: 28px 0; }
+  .stats-row  { display: flex; gap: 48px; flex-wrap: wrap; }
+  .stat-num   { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; line-height: 1; }
+  .stat-lbl   { font-size: 12px; color: rgba(255,255,255,.45); letter-spacing: .5px; text-transform: uppercase; margin-top: 3px; }
+
+  /* ══════════════════════════════════════
+     ABOUT
+  ══════════════════════════════════════ */
+  .about { background: var(--parchment); padding: var(--section-py) 0; }
+
+  .section-tag   { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); margin-bottom: 12px; }
+  .section-title { font-family: var(--font-display); font-size: clamp(28px,4vw,44px); line-height: 1.15; text-wrap: balance; color: var(--ink); margin-bottom: 16px; }
+  .section-lead  { font-size: 17px; color: #4A6A56; max-width: 560px; line-height: 1.7; }
+
+  .about-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .features     { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .feat         { display: flex; gap: 14px; align-items: flex-start; }
+  .feat-icon    { width: 36px; height: 36px; background: rgba(28,61,46,.1); border-radius: var(--r); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+  .feat h4      { font-size: 15px; font-weight: 700; color: var(--forest); margin-bottom: 3px; }
+  .feat p       { font-size: 14px; color: #5A7A66; line-height: 1.55; }
+
+  .about-visual { position: relative; }
+  .about-photo  {
+    border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 4/5;
+    background: linear-gradient(135deg, var(--forest) 0%, var(--sage) 60%, #6aaa85 100%);
+    position: relative;
+  }
+  /* When you add a real photo, the img tag replaces the placeholder div */
+  .about-photo img   { width: 100%; height: 100%; object-fit: cover; }
+  .photo-placeholder {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+    color: rgba(255,255,255,.45); font-size: 13px; font-weight: 600;
+    letter-spacing: .3px; text-align: center; padding: 24px;
+  }
+
+  .about-badge { position: absolute; bottom: -20px; left: -20px; background: var(--gold); border-radius: var(--r-lg); padding: 18px 22px; box-shadow: var(--shadow-lg); }
+  .badge-num   { font-family: var(--font-display); font-size: 36px; font-weight: 700; color: var(--forest-dark); line-height: 1; }
+  .badge-lbl   { font-size: 12px; font-weight: 700; color: var(--forest); margin-top: 3px; }
+
+  /* ══════════════════════════════════════
+     PROGRAMS
+  ══════════════════════════════════════ */
+  .programs    { background: var(--white); padding: var(--section-py) 0; }
+  .prog-header { text-align: center; margin-bottom: 56px; }
+  .prog-header .section-lead { margin: 0 auto; }
+  .prog-grid   { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .prog-card   {
+    border: 1px solid rgba(28,61,46,.1); border-radius: var(--r-lg);
+    padding: 32px 28px; background: var(--white);
+    transition: border-color .25s, box-shadow .25s, transform .25s;
+  }
+  .prog-card:hover { border-color: var(--sage); box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .prog-icon  { width: 52px; height: 52px; background: var(--parchment); border-radius: var(--r); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; }
+  .prog-card h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--forest); margin-bottom: 10px; }
+  .prog-card p  { font-size: 14px; color: #5A7A66; line-height: 1.65; }
+
+  /* ══════════════════════════════════════
+     GALLERY
+  ══════════════════════════════════════ */
+  .gallery        { background: var(--parchment); padding: var(--section-py) 0; }
+  .gallery-header { margin-bottom: 40px; }
+  .gal-grid       { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .gal-item       { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 4/3; position: relative; }
+  .gal-item:first-child { grid-column: span 2; aspect-ratio: 16/9; }
+  .gal-item img   { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+  .gal-item:hover img { transform: scale(1.04); }
+
+  /* Placeholder gradient tiles — remove when you add real photos */
+  .gal-ph { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: rgba(255,255,255,.5); font-size: 12px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; transition: transform .4s ease; }
+  .gal-item:hover .gal-ph { transform: scale(1.04); }
+  .g1 { background: linear-gradient(135deg, #1C3D2E 0%, #4E7A62 100%); }
+  .g2 { background: linear-gradient(135deg, #2D5A40 0%, #6aaa85 100%); }
+  .g3 { background: linear-gradient(135deg, #8A6A10 0%, #E8B830 100%); }
+  .g4 { background: linear-gradient(135deg, #1A3550 0%, #3A6080 100%); }
+  .g5 { background: linear-gradient(135deg, #3D2E1C 0%, #7A624E 100%); }
+
+  /* ══════════════════════════════════════
+     CONTACT
+  ══════════════════════════════════════ */
+  .contact { background: var(--forest-dark); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+  .contact::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 360px; height: 360px; border-radius: 50%;
+    border: 60px solid rgba(200,149,32,.05); pointer-events: none;
+  }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .contact-info .section-tag   { color: var(--gold); }
+  .contact-info .section-title { color: var(--white); }
+  .contact-info .section-lead  { color: rgba(255,255,255,.58); }
+
+  .channels { margin-top: 36px; display: flex; flex-direction: column; gap: 16px; }
+  .ch-btn   { display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-radius: var(--r); font-size: 15px; font-weight: 600; transition: all .2s; }
+  .ch-wa    { background: #25D366; color: var(--white); }
+  .ch-wa:hover { background: #1eb957; }
+  .ch-email { background: rgba(255,255,255,.08); color: var(--white); border: 1px solid rgba(255,255,255,.14); cursor: default; }
+  .ch-phone { background: rgba(255,255,255,.08); color: var(--white); border: 1px solid rgba(255,255,255,.14); cursor: default; }
+  .ch-icon  { width: 38px; height: 38px; border-radius: var(--r); background: rgba(0,0,0,.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .ch-email .ch-icon, .ch-phone .ch-icon { background: rgba(255,255,255,.1); }
+  .ch-label { font-size: 15px; font-weight: 700; }
+  .ch-meta  { font-size: 12px; opacity: .7; font-weight: 400; margin-top: 2px; }
+
+  .map-card { border-radius: var(--r-lg); overflow: hidden; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); }
+  .map-embed { width: 100%; height: 280px; border: none; display: block; }
+
+  /* Shown when no iframe is present */
+  .map-static {
+    height: 280px;
+    background: linear-gradient(135deg, #0F2A1C 0%, #1C3D2E 40%, #2D5A40 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px; color: rgba(255,255,255,.5); position: relative; overflow: hidden;
+  }
+  .map-static::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(200,149,32,.1) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .map-pin { width: 52px; height: 52px; background: var(--gold); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(200,149,32,.4); }
+  .map-pin svg { transform: rotate(45deg); }
+  .map-loc-lbl { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.7); letter-spacing: .3px; }
+
+  .map-footer { padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .map-addr   { color: rgba(255,255,255,.7); font-size: 14px; line-height: 1.45; font-style: normal; }
+  .map-addr strong { display: block; color: var(--white); font-size: 15px; margin-bottom: 3px; }
+  .dir-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--gold); color: var(--forest-dark); padding: 9px 16px; border-radius: var(--r); font-size: 13px; font-weight: 700; white-space: nowrap; transition: background .2s; flex-shrink: 0; }
+  .dir-btn:hover { background: var(--gold-light); }
+
+  /* ══════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════ */
+  .footer     { background: var(--ink); padding: 28px 0; }
+  .foot-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .foot-brand { font-family: var(--font-display); font-size: 16px; color: var(--white); font-weight: 700; }
+  .foot-copy  { font-size: 13px; color: rgba(255,255,255,.38); }
+  .foot-links { display: flex; gap: 20px; }
+  .foot-links a { font-size: 13px; color: rgba(255,255,255,.45); transition: color .2s; }
+  .foot-links a:hover { color: var(--gold); }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════ */
+  @media (max-width: 900px) {
+    .prog-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    :root { --section-py: 56px; }
+    .nav-links  { display: none; }
+    .nav-toggle { display: flex; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 68px; left: 0; right: 0;
+      background: var(--forest-dark); padding: 20px 24px 28px;
+      gap: 20px; border-bottom: 1px solid rgba(200,149,32,.15);
+    }
+    .nav-links.open a { font-size: 16px; }
+    .about-grid    { grid-template-columns: 1fr; gap: 40px; }
+    .about-photo   { aspect-ratio: 16/9; }
+    .about-badge   { bottom: -16px; left: 16px; }
+    .prog-grid     { grid-template-columns: 1fr; }
+    .gal-grid      { grid-template-columns: 1fr 1fr; }
+    .contact-grid  { grid-template-columns: 1fr; gap: 40px; }
+    .hero-actions  { flex-direction: column; align-items: flex-start; }
+    .btn           { width: 100%; justify-content: center; }
+    .stats-row     { gap: 28px; }
+    .foot-inner    { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .btn.mobile-wa    { display: inline-flex; }
+    .ch-btn.mobile-wa { display: flex; }
+    .wa-float         { display: flex; }
+  }
+  @media (max-width: 480px) {
+    .gal-grid { grid-template-columns: 1fr; }
+    .gal-item:first-child { grid-column: span 1; aspect-ratio: 4/3; }
+  }
+
+  /* WhatsApp — hidden on desktop, visible on mobile only */
+  .btn.mobile-wa    { display: none; }
+  .ch-btn.mobile-wa { display: none; }
+
+  /* Floating WhatsApp button (mobile only) */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 24px; z-index: 200;
+    display: none; align-items: center; gap: 10px;
+    background: #25D366; color: #fff;
+    padding: 14px 20px 14px 16px; border-radius: 100px;
+    font-family: var(--font-body); font-size: 15px; font-weight: 700;
+    box-shadow: 0 4px 20px rgba(37,211,102,.45);
+    transition: transform .2s, box-shadow .2s;
+    white-space: nowrap; text-decoration: none;
+  }
+  .wa-float:hover  { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,.55); }
+  .wa-float:active { transform: translateY(0); }
+
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+     Change: school name in .nav-name and .nav-mark
+═══════════════════════════════════════ -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#home" class="nav-brand" aria-label="Mehr Sabir Pre Primary School home">
+        <div class="nav-mark" aria-hidden="true">M</div>
+        <span class="nav-name">Mehr Sabir Pre Primary</span>
+      </a>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════════════════════════════════════
+     HERO
+     Change: school name, tagline, description,
+             WhatsApp number (line with href="https://wa.me/...")
+             Stats: years, students, pass rate, teachers
+═══════════════════════════════════════ -->
+<section class="hero" id="home" aria-labelledby="hero-heading">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="eyebrow">
+        <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="4"/></svg>
+        Admissions Open 2026–27 &nbsp;·&nbsp; Limited Seats!
+      </div>
+      <h1 class="hero-title" id="hero-heading">
+        Mehr Sabir<br><em>Pre Primary School</em>
+      </h1>
+      <p class="hero-sub">
+        Play · Learn · Grow — A bright beginning for every child. Offering Play Group, Nursery, Jr. KG &amp; Sr. KG with ECCED-certified educators, smart classrooms, and a safe, nurturing campus in Mumbra.
+      </p>
+      <div class="hero-actions">
+        <!-- CUSTOMISE: Replace 15550001234 with your WhatsApp number (country code + number, no + or spaces) -->
+        <a href="https://wa.me/918879355740?text=Hello%2C+I+am+interested+in+admissions+at+Mehr+Sabir+Pre+Primary+School." class="btn btn-wa mobile-wa" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.849L0 24l6.302-1.494A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.738.885.9-3.643-.235-.373A9.818 9.818 0 1112 21.818z"/></svg>
+          WhatsApp Us
+        </a>
+        <a href="#about" class="btn btn-outline">
+          Learn More
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="container">
+      <div class="stats-row">
+        <div><div class="stat-num">4</div><div class="stat-lbl">Programs Offered</div></div>
+        <div><div class="stat-num">AC</div><div class="stat-lbl">Smart Classrooms</div></div>
+        <div><div class="stat-num">CCTV</div><div class="stat-lbl">Secure Campus</div></div>
+        <div><div class="stat-num">ECCED</div><div class="stat-lbl">Teacher Training</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     ABOUT
+     Change: description text, feature items,
+             Replace .photo-placeholder div with:
+             <img src="your-photo.jpg" alt="ABC School campus">
+             (keep it inside .about-photo)
+═══════════════════════════════════════ -->
+<section class="about" id="about" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <p class="section-tag">About Our School</p>
+        <h2 class="section-title" id="about-heading">A Bright Beginning for Every Child</h2>
+        <p class="section-lead">Mehr Sabir Pre Primary School provides expert early childhood education under the Omar Bin Khattab Educational Trust, backed by our in-house ECCED Teacher Training Institute in Kausa, Mumbra.</p>
+        <div class="features">
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">🛡️</div>
+            <div>
+              <h4>Safe &amp; Secure Campus</h4>
+              <p>CCTV cameras, security guards, and a clean, hygienic environment keep your child safe and comfortable every day.</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">🖥️</div>
+            <div>
+              <h4>Smart Board Classrooms</h4>
+              <p>Air-conditioned classrooms equipped with smart board technology for an engaging, modern learning experience.</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">👩‍🏫</div>
+            <div>
+              <h4>Individual Attention</h4>
+              <p>Professionally trained, ECCED-certified staff ensure every child receives the personalised care and guidance they deserve.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-visual">
+        <div class="about-photo">
+          <!--
+            REPLACE THIS COMMENT BLOCK with your school photo:
+            <img src="school-campus.jpg" alt="ABC School campus">
+
+            Photo tips:
+            - Ideal size: 800×1000px or larger
+            - Shows the school building, entrance, or students
+          -->
+          <div class="photo-placeholder" aria-label="School photo placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span>Add Your School Photo Here</span>
+          </div>
+        </div>
+        <div class="about-badge">
+          <div class="badge-num">2026</div>
+          <div class="badge-lbl">Admissions<br>Now Open</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PROGRAMS
+     Change: card titles and descriptions to match your school's actual offerings
+═══════════════════════════════════════ -->
+<section class="programs" id="programs" aria-labelledby="prog-heading">
+  <div class="container">
+    <div class="prog-header">
+      <p class="section-tag">What We Offer</p>
+      <h2 class="section-title" id="prog-heading">Programs &amp; Highlights</h2>
+      <p class="section-lead">From toddler play groups to kindergarten readiness — every program is designed to give your child the strongest possible start.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="prog-card">
+        <div class="prog-icon" aria-hidden="true">🎈</div>
+        <h3>Play Group</h3>
+        <p>For children aged 2–3 years. A joyful introduction to school through play, music, and creative activities that spark curiosity and confidence.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon" aria-hidden="true">🌸</div>
+        <h3>Nursery</h3>
+        <p>Building early language, motor skills, and social habits for 3–4 year olds in a warm, structured, and child-friendly environment.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon" aria-hidden="true">🎒</div>
+        <h3>Jr. Kindergarten</h3>
+        <p>Foundational literacy and numeracy for 4–5 year olds through smart board lessons, hands-on activities, and guided play.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon" aria-hidden="true">🎓</div>
+        <h3>Sr. Kindergarten</h3>
+        <p>Preparing 5–6 year olds for primary school with advanced concepts, reading readiness, and independent thinking skills.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon" aria-hidden="true">🏠</div>
+        <h3>Day Care Centre</h3>
+        <p>Safe, supervised, and engaging after-hours care for working parents. Trained caregivers in a hygienic, child-friendly space.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon" aria-hidden="true">📜</div>
+        <h3>ECCED Teacher Training</h3>
+        <p>1-Year Diploma in Pre-Primary Teacher Training. Two batches per year (January &amp; July). Open to all 18+ with 10+2 qualification.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     GALLERY
+     To add real photos, replace each .gal-ph div with:
+     <img src="your-photo.jpg" alt="description">
+     Recommended sizes: 800×600px (small), 1200×675px (large first item)
+═══════════════════════════════════════ -->
+<section class="gallery" id="gallery" aria-labelledby="gal-heading">
+  <div class="container">
+    <div class="gallery-header">
+      <p class="section-tag">Campus Life</p>
+      <h2 class="section-title" id="gal-heading">Life at Mehr Sabir</h2>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-item">
+        <!-- Large feature photo — replace with: <img src="campus.jpg" alt="ABC School campus"> -->
+        <div class="gal-ph g1">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          Campus Exterior
+        </div>
+      </div>
+      <div class="gal-item">
+        <!-- replace with: <img src="classroom.jpg" alt="Classrooms at ABC School"> -->
+        <div class="gal-ph g2">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          Classrooms
+        </div>
+      </div>
+      <div class="gal-item">
+        <!-- replace with: <img src="sports.jpg" alt="Sports at ABC School"> -->
+        <div class="gal-ph g3">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          Sports Ground
+        </div>
+      </div>
+      <div class="gal-item">
+        <!-- replace with: <img src="lab.jpg" alt="Science lab at ABC School"> -->
+        <div class="gal-ph g4">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          Science Lab
+        </div>
+      </div>
+      <div class="gal-item">
+        <!-- replace with: <img src="events.jpg" alt="Annual events at ABC School"> -->
+        <div class="gal-ph g5">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          Annual Events
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CONTACT
+     CUSTOMISE:
+     1. WhatsApp href — replace 15550001234 with your number
+     2. WhatsApp display number in .ch-meta
+     3. Email href and display text
+     4. Map iframe src — get from Google Maps > Share > Embed a map > copy the src URL
+     5. School address text
+     6. Directions link — replace destination value with your address
+═══════════════════════════════════════ -->
+<section class="contact" id="contact" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="section-tag">Get In Touch</p>
+        <h2 class="section-title" id="contact-heading">We'd Love to Hear From You</h2>
+        <p class="section-lead">Questions about admissions for 2026–27, fees, or our programs? Reach out — our team responds quickly.</p>
+        <div class="channels">
+          <a href="https://wa.me/918879355740?text=Hello%2C+I+am+interested+in+admissions+at+Mehr+Sabir+Pre+Primary+School." class="ch-btn ch-wa mobile-wa" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+            <div class="ch-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.849L0 24l6.302-1.494A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.738.885.9-3.643-.235-.373A9.818 9.818 0 1112 21.818z"/></svg>
+            </div>
+            <div>
+              <div class="ch-label">Chat on WhatsApp</div>
+              <div class="ch-meta">+91 88793 55740 · Replies within 1 hour</div>
+            </div>
+          </a>
+
+          <!-- CUSTOMISE: Replace +15550001234 with your actual phone number -->
+          <div class="ch-btn ch-phone" aria-label="School phone numbers">
+            <div class="ch-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 9.81 19.79 19.79 0 01.88 1.18 2 2 0 012.88 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="ch-label">Call Us</div>
+              <div class="ch-meta">8879355740 &nbsp;·&nbsp; 8652743443 &nbsp;·&nbsp; 9892723163</div>
+            </div>
+          </div>
+
+          <div class="ch-btn ch-email" aria-label="School email address">
+            <div class="ch-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+            </div>
+            <div>
+              <div class="ch-label">Email</div>
+              <!-- REPLACE with your actual school email address -->
+              <div class="ch-meta">mehrsabirschool@gmail.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-card">
+        <!--
+          HOW TO GET YOUR GOOGLE MAPS EMBED:
+          1. Open Google Maps and search for your school
+          2. Click Share → Embed a map
+          3. Copy the URL inside src="..." and paste it below
+          Replace the src value below with your embed URL.
+        -->
+        <iframe
+          class="map-embed"
+          src="https://maps.google.com/maps?q=Maimoona+CHS,Kausa,Mumbra,Maharashtra+400612&output=embed&hl=en"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mehr Sabir Pre Primary School on Google Maps"
+          aria-label="Mehr Sabir Pre Primary School location on Google Maps">
+        </iframe>
+        <div class="map-footer">
+          <!-- CUSTOMISE: Replace with your actual school address -->
+          <address class="map-addr">
+            <strong>Mehr Sabir Pre Primary School</strong>
+            Shop No.1, Mezzanine Floor, Maimoona CHS,<br>Opp. Bharat Gears, Kausa, Mumbra – 400612
+          </address>
+          <!-- CUSTOMISE: Update data-destination to your school's full address -->
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Maimoona+CHS+Kausa+Mumbra+Maharashtra+400612"
+             class="dir-btn"
+             data-destination="Maimoona CHS, Kausa, Mumbra, Maharashtra 400612"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Get directions to Mehr Sabir Pre Primary School on Google Maps">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M3 12h18M12 3l9 9-9 9"/></svg>
+            Directions
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+     Change: school name, year
+═══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="foot-inner">
+      <div class="foot-brand">Mehr Sabir Pre Primary School</div>
+      <p class="foot-copy">© 2026 Mehr Sabir Pre Primary School. All rights reserved.</p>
+      <nav class="foot-links" aria-label="Footer links">
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var toggle = document.getElementById('navToggle');
+  var links  = document.getElementById('navLinks');
+  var nav    = document.querySelector('.nav');
+
+  toggle.addEventListener('click', function () {
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  links.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  window.addEventListener('scroll', function () {
+    nav.style.borderBottomColor = window.scrollY > 50
+      ? 'rgba(200,149,32,.4)'
+      : 'rgba(200,149,32,.2)';
+  }, { passive: true });
+
+  // Directions — use GPS coordinates as origin so Maps routes from exact current location
+  document.querySelectorAll('.dir-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var dest    = encodeURIComponent(btn.dataset.destination || 'Mehr Sabir Pre Primary School Mumbra');
+      var baseUrl = 'https://www.google.com/maps/dir/?api=1&destination=' + dest;
+
+      if (!navigator.geolocation) {
+        window.open(baseUrl, '_blank', 'noopener,noreferrer');
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        function (pos) {
+          var origin = pos.coords.latitude + ',' + pos.coords.longitude;
+          window.open(baseUrl + '&origin=' + encodeURIComponent(origin), '_blank', 'noopener,noreferrer');
+        },
+        function () {
+          // Denied or unavailable — Maps will still default to current location
+          window.open(baseUrl, '_blank', 'noopener,noreferrer');
+        },
+        { timeout: 6000, maximumAge: 60000 }
+      );
+    });
+  });
+}());
+</script>
+
+<!-- ═══ FLOATING WHATSAPP BUTTON (mobile only) ═══ -->
+<!-- CUSTOMISE: Replace 15550001234 with your number, and update the pre-filled text message -->
+<a href="https://wa.me/918879355740?text=Hello%2C+I+am+interested+in+admissions+at+Mehr+Sabir+Pre+Primary+School."
+   class="wa-float"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Chat with us on WhatsApp">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.849L0 24l6.302-1.494A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.738.885.9-3.643-.235-.373A9.818 9.818 0 1112 21.818z"/>
+  </svg>
+  Chat with Us
+</a>
+
+</body>
+</html>
